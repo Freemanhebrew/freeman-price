@@ -3,358 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREEMAN | Индивидуальный Иврит 2026</title>
+    <title>Иврит с Фриман | Эксклюзивное обучение</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --gold: #d4a373;
-            --dark-gold: #bc8a5f;
-            --cream: #f4f1de;
-            --black: #1a1a1a;
-            --red: #c1121f;
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --bg-black: #050505;
         }
+
         body {
-            font-family: 'Manrope', sans-serif;
-            background-color: var(--cream);
-            color: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-black);
+            color: #ffffff;
             scroll-behavior: smooth;
         }
-        h1, h2, h3, .logo {
-            font-family: 'Unbounded', sans-serif;
-            text-transform: uppercase;
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(212, 163, 115, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
-        .glass-card:hover {
+
+        /* Кастомный скроллбар */
+        .reviews-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .reviews-container::-webkit-scrollbar-track {
+            background: #111;
+        }
+        .reviews-container::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .premium-card {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .premium-card:hover {
             border-color: var(--gold);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
         }
-        .accent-gold { color: var(--gold); }
-        .text-red { color: var(--red); }
-        .hero-section {
-            background: radial-gradient(circle at center, rgba(212, 163, 115, 0.1) 0%, transparent 70%);
-        }
-        .btn-primary {
-            background-color: var(--black);
-            color: white;
-            transition: all 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: var(--gold);
-            transform: scale(1.02);
-        }
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .frequency-badge {
-            font-size: 10px;
+
+        .btn-luxury {
+            background: var(--gold-gradient);
+            color: #000;
             font-weight: 800;
-            padding: 4px 12px;
-            background: var(--black);
-            color: white;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        .plan-card {
-            background: white;
-            border: 2px solid var(--black);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 8px 8px 0px 0px var(--gold);
-            transition: all 0.3s ease;
+
+        .btn-luxury:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
-        .plan-card:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 12px 12px 0px 0px var(--black);
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        details summary::-webkit-details-marker { display: none; }
+        details[open] summary i { transform: rotate(180deg); }
     </style>
+
+    <script src="https://static.prodamus.ru/checkout/popup.js"></script>
 </head>
-<body class="hero-section min-h-screen">
+<body>
 
-    <!-- Header -->
-    <header class="py-6 px-6 max-w-6xl mx-auto flex justify-between items-center">
-        <div class="logo text-xl font-bold tracking-tighter">
-            <span class="bg-black text-white px-2 py-1">FREE</span>MAN
+    <nav class="fixed top-0 w-full z-[100] bg-black/90 backdrop-blur-xl border-b border-white/10 px-6 py-5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-widest gold-text">FREEMAN</a>
+            <div class="hidden md:flex gap-10 items-center text-[11px] uppercase font-bold tracking-[0.2em]">
+                <a href="#about" class="hover:text-amber-400 transition">Обо мне</a>
+                <a href="#prices" class="hover:text-amber-400 transition">Тарифы</a>
+                <a href="#reviews" class="hover:text-amber-400 transition">Отзывы</a>
+                <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-luxury px-6 py-2.5 rounded-sm">Записаться</a>
+            </div>
         </div>
-        <nav class="hidden md:flex gap-8 text-[10px] font-extrabold uppercase tracking-[0.2em]">
-            <a href="#about" class="hover:text-gold transition">Обучение</a>
-            <a href="#prices" class="hover:text-gold transition">Прайс</a>
-            <a href="#rules" class="hover:text-gold transition">Правила</a>
-        </nav>
-    </header>
+    </nav>
 
-    <!-- Hero -->
-    <section class="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-none tracking-tight">
-            Иврит для тех, кто <br><span class="accent-gold italic underline decoration-black/10">хочет большего</span>
-        </h1>
-        <p class="text-lg md:text-xl font-medium max-w-2xl mx-auto mb-12 opacity-80">
-            Уровни от <span class="font-bold underline">алэф+ до hэй</span>, живой сленг и подготовка к университетам Израиля с Андреем Фриманом.
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+        <span class="text-amber-500 uppercase tracking-[0.6em] text-[10px] mb-6 reveal">Иврит премиального уровня</span>
+        <h1 class="text-5xl md:text-[8rem] font-black mb-8 reveal leading-none italic uppercase">Иврит с <br><span class="gold-text">Фриман</span></h1>
+        <p class="max-w-2xl text-zinc-300 font-light text-xl mb-12 reveal italic font-serif">
+            "Вы заговорите не просто правильно, а естественно. <br>Я дам вам ключи от израильского кода."
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary px-10 py-5 rounded-none font-bold uppercase text-xs tracking-widest shadow-xl">
-                Начать обучение
-            </a>
-            <a href="https://t.me/Freeman_hebrew" target="_blank" class="border-2 border-black px-10 py-5 rounded-none font-bold uppercase text-xs tracking-widest hover:bg-black hover:text-white transition">
-                Мой канал
-            </a>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="about" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="glass-card p-8 text-center">
-                <div class="text-2xl mb-4">🇮🇱</div>
-                <h3 class="text-xs font-black mb-2">Репатрианты</h3>
-                <p class="text-xs opacity-70">Выход из языкового тупика на новый уровень свободы.</p>
-            </div>
-            <div class="glass-card p-8 text-center border-b-4 border-b-gold">
-                <div class="text-2xl mb-4">🎓</div>
-                <h3 class="text-xs font-black mb-2">Абитуриенты</h3>
-                <p class="text-xs opacity-70">Академический иврит для поступления в вузы.</p>
-            </div>
-            <div class="glass-card p-8 text-center">
-                <div class="text-2xl mb-4">💼</div>
-                <h3 class="text-xs font-black mb-2">Профессионалы</h3>
-                <p class="text-xs opacity-70">Язык для карьеры и бизнес-коммуникации.</p>
-            </div>
-            <div class="glass-card p-8 text-center">
-                <div class="text-2xl mb-4">🗣️</div>
-                <h3 class="text-xs font-black mb-2">Живой язык</h3>
-                <p class="text-xs opacity-70">Сленг и акцент, чтобы тебя принимали за своего.</p>
+        <div class="flex flex-wrap justify-center gap-6 reveal">
+            <a href="#prices" class="btn-luxury px-12 py-5 text-sm">Выбрать формат</a>
+            <div class="flex items-center gap-4">
+                <a href="https://t.me/Freeman_hebrew" target="_blank" class="p-4 border border-white/20 rounded-full hover:bg-white/10 transition">
+                    <i data-lucide="send" class="w-6 h-6"></i>
+                </a>
+                <a href="https://instagram.com/freeman_hebrew" target="_blank" class="p-4 border border-white/20 rounded-full hover:bg-white/10 transition">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Prices 45 min -->
-    <section id="prices" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-black mb-2 tracking-tighter italic">Формат <span class="accent-gold">45</span> минут</h2>
-            <p class="text-[10px] font-black uppercase tracking-widest opacity-40">Кратко, эффективно, регулярно</p>
-            <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
-        </div>
-
-        <div class="price-grid">
-            <!-- 1x week 45 -->
-            <div class="plan-card">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge">1 раз в неделю</span>
-                    <span class="font-black opacity-30">45'</span>
+    <section id="about" class="py-32 bg-zinc-950">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <h2 class="text-6xl font-black mb-10 italic">Андрей <br><span class="gold-text">Фриман</span></h2>
+                <div class="space-y-8 text-white font-light text-lg leading-relaxed">
+                    <p>Полиглот и ментор. Более 20 лет я живу в языковой среде Израиля и знаю об иврите всё: от библейских корней до дерзкого уличного сленга.</p>
+                    <p class="border-l-4 border-amber-600 pl-8 italic font-serif text-2xl gold-text">
+                        "Я не учу по учебникам. Я создаю ваш личный языковой интеллект."
+                    </p>
+                    <p>Моя специализация — уровни ב-г и выше. Мы будем работать над тем, чтобы ваша речь звучала дорого, точно и уверенно.</p>
                 </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (4 зан.)</span>
-                        <span class="font-black opacity-40">По запросу</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (12 зан.)</span>
-                        <span class="font-black">1938 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">6 месяцев (24 зан.)</span>
-                        <span class="font-black">3672 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Записаться на 1х</a>
             </div>
-
-            <!-- 2x week 45 -->
-            <div class="plan-card">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge">2 раза в неделю</span>
-                    <span class="font-black opacity-30">45'</span>
-                </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (8 зан.)</span>
-                        <span class="font-black">1200 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (24 зан.)</span>
-                        <span class="font-black">3420 ₪</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="font-black text-sm uppercase">6 месяцев (48 зан.)</span>
-                        <span class="font-black accent-gold text-xl">6480 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Записаться на 2х</a>
-            </div>
-
-            <!-- 3x week 45 -->
-            <div class="plan-card">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge">3 раза в неделю</span>
-                    <span class="font-black opacity-30">45'</span>
-                </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (12 зан.)</span>
-                        <span class="font-black">1620 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (36 зан.)</span>
-                        <span class="font-black">4615 ₪</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="font-black text-sm uppercase">6 месяцев (72 зан.)</span>
-                        <span class="font-black accent-gold text-xl">8748 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Записаться на 3х</a>
+            <div class="relative reveal">
+                <img src="https://i.postimg.cc/2Sz53FDB/IMG-0264-fd9216f6-30cc-419d-9a5e-d7532c32b2a7.png" alt="Андрей Фриман" class="grayscale hover:grayscale-0 transition duration-1000 border border-white/10 shadow-2xl">
             </div>
         </div>
     </section>
 
-    <!-- Prices 60 min -->
-    <section class="py-16 px-6 max-w-6xl mx-auto bg-black/5">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-black mb-2 tracking-tighter italic">Формат <span class="accent-gold">60</span> минут</h2>
-            <p class="text-[10px] font-black uppercase tracking-widest opacity-40">Максимальное погружение в язык</p>
-            <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
-        </div>
-
-        <div class="price-grid">
-            <!-- 1x week 60 -->
-            <div class="plan-card">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge">1 раз в неделю</span>
-                    <span class="font-black opacity-30">60'</span>
-                </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (4 зан.)</span>
-                        <span class="font-black">800 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (12 зан.)</span>
-                        <span class="font-black">2280 ₪</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="font-bold">6 месяцев (24 зан.)</span>
-                        <span class="font-black text-xl">4320 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Выбрать 1х</a>
+    <section id="prices" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-6xl font-black mb-6 uppercase">Тарифные <span class="gold-text italic">Планы</span></h2>
+                <p class="text-zinc-400 tracking-[0.3em] uppercase text-xs">Доступна оплата в любой валюте</p>
             </div>
 
-            <!-- 2x week 60 -->
-            <div class="plan-card border-gold">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge bg-gold">2 раза в неделю</span>
-                    <span class="font-black opacity-30 text-gold">60'</span>
-                </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (8 зан.)</span>
-                        <span class="font-black">1360 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (24 зан.)</span>
-                        <span class="font-black">3875 ₪</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="font-black text-sm uppercase">6 месяцев (48 зан.)</span>
-                        <span class="font-black accent-gold text-xl">7345 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Выбрать 2х</a>
-            </div>
-
-            <!-- 3x week 60 -->
-            <div class="plan-card">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="frequency-badge">3 раза в неделю</span>
-                    <span class="font-black opacity-30">60'</span>
-                </div>
-                <div class="space-y-6 mb-8 flex-grow">
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">1 месяц (12 зан.)</span>
-                        <span class="font-black">1800 ₪</span>
-                    </div>
-                    <div class="flex justify-between border-b border-black/5 pb-2">
-                        <span class="font-bold">3 месяца (36 зан.)</span>
-                        <span class="font-black">5130 ₪</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="font-black text-sm uppercase">6 месяцев (72 зан.)</span>
-                        <span class="font-black accent-gold text-xl">9720 ₪</span>
-                    </div>
-                </div>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-primary py-4 text-center text-[10px] font-black uppercase tracking-widest">Выбрать 3х</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rules -->
-    <section id="rules" class="py-16 px-6 max-w-4xl mx-auto">
-        <div class="glass-card p-10 md:p-16 border-l-8 border-l-black">
-            <h2 class="text-2xl font-black mb-12">Дисциплина и <span class="text-red italic">правила</span></h2>
-            
-            <div class="space-y-12">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="text-2xl font-black opacity-10 min-w-[60px]">01</div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 uppercase tracking-tight text-red">Правило 24 часов</h4>
-                        <p class="text-sm font-medium leading-relaxed opacity-80 italic">Если отмена или перенос сделаны менее чем за 24 часа — урок считается проведенным и оплачивается полностью.</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-6 border-t border-black/5 pt-10">
-                    <div class="text-2xl font-black opacity-10 min-w-[60px]">02</div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 uppercase tracking-tight">Заморозка</h4>
-                        <p class="text-sm font-medium leading-relaxed opacity-80 mb-2">Зависит от длительности абонемента:</p>
-                        <ul class="text-xs font-bold space-y-1 opacity-70">
-                            <li>• 3 месяца — 1 заморозка (до 2 нед.)</li>
-                            <li>• 6 месяцев — 2 заморозки.</li>
-                            <li class="text-red font-black">• На 1 месяц заморозка не распространяется.</li>
+            <div class="mb-32 reveal">
+                <h3 class="text-center text-3xl font-black mb-16 gold-text italic uppercase">Формат: 45 минут</h3>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="premium-card p-12 flex flex-col">
+                        <h4 class="text-2xl font-bold mb-2">ФРИМАН ЛАЙТ</h4>
+                        <p class="text-zinc-500 text-xs uppercase mb-8">4 занятия в месяц</p>
+                        <div class="text-6xl font-black mb-8">800<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
+                            <li>• 1 раз в неделю</li>
                         </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/fqbwDT3/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать ЛАЙТ</button>
+                    </div>
+                    <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
+                        <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН МЕДИУМ</h4>
+                        <p class="text-amber-500 text-xs uppercase mb-8 italic">8 занятий в месяц</p>
+                        <div class="text-6xl font-black mb-8">1440<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-white">
+                            <li>• 2 раза в неделю</li>
+                        </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/s1bwDZz/" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать МЕДИУМ</button>
+                    </div>
+                    <div class="premium-card p-12 flex flex-col">
+                        <h4 class="text-2xl font-bold mb-2">ФРИМАН МАКС</h4>
+                        <p class="text-zinc-500 text-xs uppercase mb-8">12 занятий в месяц</p>
+                        <div class="text-6xl font-black mb-8">1920<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
+                            <li>• 3 раза в неделю</li>
+                        </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/qfbwDYJ/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать МАКС</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="flex flex-col md:flex-row gap-6 border-t border-black/5 pt-10">
-                    <div class="text-2xl font-black opacity-10 min-w-[60px]">03</div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 uppercase tracking-tight">Форс-мажор</h4>
-                        <p class="text-sm font-medium leading-relaxed opacity-80">Только экстренные ситуации (болезнь, ЧС). В этих случаях я иду навстречу и мы переносим урок. Но это исключение, а не норма.</p>
+            <div class="reveal">
+                <h3 class="text-center text-3xl font-black mb-16 gold-text italic uppercase">Формат: 60 минут</h3>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="premium-card p-12 flex flex-col">
+                        <h4 class="text-2xl font-bold mb-2">ФРИМАН СТАРТ</h4>
+                        <p class="text-zinc-500 text-xs uppercase mb-8 italic">4 занятия в месяц</p>
+                        <div class="text-6xl font-black mb-8 italic">1000<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
+                            <li>• 1 раз в неделю</li>
+                        </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/opbwDXP/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать СТАРТ</button>
+                    </div>
+                    <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
+                        <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН ПРО</h4>
+                        <p class="text-amber-500 text-xs uppercase mb-8 italic">8 занятий в месяц</p>
+                        <div class="text-6xl font-black mb-8 italic">1600<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
+                            <li>• 2 раза в неделю</li>
+                        </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/mbbwDWx/" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать ПРО</button>
+                    </div>
+                    <div class="premium-card p-12 flex flex-col">
+                        <h4 class="text-2xl font-bold mb-2">ФРИМАН УЛЬТРА</h4>
+                        <p class="text-zinc-500 text-xs uppercase mb-8 italic">12 занятий в месяц</p>
+                        <div class="text-6xl font-black mb-8 italic">2160<span class="text-xl ml-1 italic font-light">₪</span></div>
+                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
+                            <li>• 3 раза в неделю</li>
+                        </ul>
+                        <button data-prodamus-pay-btn="https://payform.ru/iwbwDUK/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать УЛЬТРА</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-20 px-6 text-center">
-        <div class="mb-10">
-            <h2 class="text-4xl font-black mb-4 tracking-tighter italic uppercase">Пора заговорить?</h2>
-            <p class="text-xs font-bold uppercase tracking-[0.3em] opacity-40">Жду тебя в Telegram</p>
+    <section id="reviews" class="py-32 bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-black mb-20 text-center italic uppercase">Ваш новый <span class="gold-text">Уровень</span></h2>
+            
+            <div class="reviews-container flex gap-10 overflow-x-auto pb-16 snap-x">
+                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
+                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"До наших занятий я даже не представлял, что могу настолько быстро и качественно усваивать иврит. Через полгода смотрю видео из университета по высшей математике и всё понимаю! Лучший преподаватель."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">И</div>
+                        <span class="font-bold text-sm tracking-widest uppercase">Илья</span>
+                    </div>
+                </div>
+
+                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
+                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"Профессионал своего дела. У меня был экспресс курс, много информации за короткий срок! Благодаря его терпению я намного продвинулась. Очень рекомендую! 😊"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">М</div>
+                        <span class="font-bold text-sm tracking-widest uppercase">Мария</span>
+                    </div>
+                </div>
+
+                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
+                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"Умеет увлекательно донести материал. Занятия построены так, что с первых уроков используешь язык в жизни. Акцент на разговорные навыки — это супер."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">А</div>
+                        <span class="font-bold text-sm tracking-widest uppercase">Алена</span>
+                    </div>
+                </div>
+
+                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
+                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"После ульпанов и частных учителей только с Андреем я почувствовала «легкость бытия в Иврите». Начала читать Тору и свободно говорить за пару месяцев!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">В</div>
+                        <span class="font-bold text-sm tracking-widest uppercase">Вероника</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-zinc-600 text-[10px] uppercase tracking-[0.5em] mt-6">Листайте вправо →</p>
         </div>
-        
-        <div class="flex flex-col items-center gap-6">
-            <a href="https://t.me/Andreas_Free" target="_blank" class="bg-black text-white px-16 py-6 font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-gold transition-colors duration-500">
-                Связаться с Фриманом
-            </a>
-            <div class="mt-8 flex gap-8">
-                 <a href="https://t.me/Freeman_hebrew" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-gold transition underline underline-offset-4">Канал</a>
-                 <a href="https://t.me/Andreas_Free" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-gold transition underline underline-offset-4">Личный чат</a>
+    </section>
+
+    <section id="faq" class="py-32 px-6 bg-zinc-950">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-black mb-20 text-center italic gold-text uppercase">Вопросы</h2>
+            <div class="space-y-6">
+                <details class="group premium-card p-6 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
+                        В какой валюте возможна оплата?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
+                    </summary>
+                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
+                        Для вашего удобства я принимаю оплату в любой валюте, через официального telegram чат-бота. Всё что вам нужно сделать, это выбрать нужный вам пакет и перейти по ссылке для оплаты.
+                    </div>
+                </details>
+                <details class="group premium-card p-6 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
+                        Нужно ли покупать учебники?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
+                    </summary>
+                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
+                        Нет. Все материалы я предоставляю индивидуально: видео, audio, карточки слов и авторские тексты уже включены в стоимость обучения.
+                    </div>
+                </details>
+                <details class="group premium-card p-6 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
+                        Как проходят уроки?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
+                    </summary>
+                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
+                        Занятия проводятся в Zoom. Основной упор на практику. Мы разбираем живой язык, сленг, смотрим стендапы и подкасты, чтобы вы привыкали к реальной речи.
+                    </div>
+                </details>
             </div>
         </div>
+    </section>
 
-        <div class="mt-20 text-[8px] font-bold opacity-20 tracking-[0.8em] uppercase">
-            &copy; 2026 FREEMAN HEBREW SYSTEM
+    <section class="py-32 bg-zinc-900 px-6">
+        <div class="max-w-6xl mx-auto border-t border-b border-white/10 py-20 reveal">
+            <h2 class="text-4xl font-black mb-20 text-center gold-text uppercase">Правила Работы</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="text-center">
+                    <i data-lucide="calendar" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
+                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Абонемент</h5>
+                    <p class="text-sm text-zinc-300 font-light">Месячная оплата вперед фиксирует место в графике.</p>
+                </div>
+                <div class="text-center">
+                    <i data-lucide="refresh-cw" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
+                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Перенос</h5>
+                    <p class="text-sm text-zinc-300 font-light">Возможен при уведомлении за 24 часа. Иначе урок сгорает.</p>
+                </div>
+                <div class="text-center">
+                    <i data-lucide="zap" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
+                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Контакт</h5>
+                    <p class="text-sm text-zinc-300 font-light">Я на связи в Telegram и готов ответить на все ваши вопросы.</p>
+                </div>
+                <div class="text-center">
+                    <i data-lucide="award" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
+                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Результат</h5>
+                    <p class="text-sm text-zinc-300 font-light">Гарантированный прогресс при выполнении моих рекомендаций.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 bg-black px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16 text-center md:text-left">
+            <div>
+                <div class="text-3xl font-black gold-text mb-4 italic tracking-widest uppercase">FREEMAN HEBREW</div>
+                <p class="text-zinc-500 text-xs uppercase tracking-[0.4em]">ИВРИТ С ФРИМАН 2026</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-10">
+                <a href="https://t.me/Freeman_hebrew" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
+                    <i data-lucide="send" class="w-5 h-5"></i> Канал
+                </a>
+                <a href="https://instagram.com/freeman_hebrew" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
+                    <i data-lucide="instagram" class="w-5 h-5"></i> Instagram
+                </a>
+                <a href="https://t.me/Andreas_Free" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Запись
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-24 text-[8px] text-zinc-700 uppercase tracking-[1.5em] font-bold">
+            © 2026 АНДРЕЙ ФРИМАН | ИВРИТ С ФРИМАН
+        </div>
+        <div class="text-center mt-4 text-[10px] text-zinc-500 uppercase tracking-widest">
+            ИП Ларина Екатерина Александровна | ИНН 663904985961 | 
+            <a href="mailto:freemanwork@rambler.ru" class="underline hover:text-amber-500 transition">freemanwork@rambler.ru</a>
+        </div>
+        <div class="text-center mt-4 flex justify-center gap-6">
+            <a href="offer-example.pdf" target="_blank" class="text-[10px] text-zinc-500 uppercase tracking-widest underline hover:text-amber-500 transition">
+                Публичная оферта
+            </a>
+            <a href="Регламент обучения - Иврит с Фриман.pdf" target="_blank" class="text-[10px] text-zinc-500 uppercase tracking-widest underline hover:text-amber-500 transition">
+                Регламент обучения
+            </a>
         </div>
     </footer>
 
+    <script>
+        lucide.createIcons();
+
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Инициализация скрипта Единого Окна Продамус
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-prodamus-pay-btn]').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const payUrl = this.getAttribute('data-prodamus-pay-btn');
+                    
+                    if (typeof window.ProdamusCheckout === 'undefined') {
+                        // Фолбэк на случай непредвиденных проблем с сетью
+                        window.location.href = payUrl;
+                        return;
+                    }
+
+                    const checkout = new window.ProdamusCheckout({
+                        url: payUrl
+                    });
+                    
+                    checkout.open();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
