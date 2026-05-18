@@ -156,7 +156,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-zinc-300">
                             <li>• 1 раз в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/fqbwDT3/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать ЛАЙТ</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/fqbwDT3/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать ЛАЙТ</button>
                     </div>
                     <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
                         <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН МЕДИУМ</h4>
@@ -165,7 +165,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-white">
                             <li>• 2 раза в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/s1bwDZz/" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать МЕДИУМ</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/s1bwDZz/'}); return false;" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать МЕДИУМ</button>
                     </div>
                     <div class="premium-card p-12 flex flex-col">
                         <h4 class="text-2xl font-bold mb-2">ФРИМАН МАКС</h4>
@@ -174,7 +174,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-zinc-300">
                             <li>• 3 раза в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/qfbwDYJ/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать МАКС</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/qfbwDYJ/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать МАКС</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-zinc-300">
                             <li>• 1 раз в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/opbwDXP/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать СТАРТ</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/opbwDXP/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать СТАРТ</button>
                     </div>
                     <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
                         <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН ПРО</h4>
@@ -198,7 +198,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-zinc-300">
                             <li>• 2 раза в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/mbbwDWx/" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать ПРО</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/mbbwDWx/'}); return false;" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать ПРО</button>
                     </div>
                     <div class="premium-card p-12 flex flex-col">
                         <h4 class="text-2xl font-bold mb-2">ФРИМАН УЛЬТРА</h4>
@@ -207,7 +207,7 @@
                         <ul class="text-sm space-y-4 mb-12 text-zinc-300">
                             <li>• 3 раза в неделю</li>
                         </ul>
-                        <button data-prodamus-pay-btn="https://payform.ru/iwbwDUK/" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать УЛЬТРА</button>
+                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/iwbwDUK/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать УЛЬТРА</button>
                     </div>
                 </div>
             </div>
@@ -369,67 +369,6 @@
         }
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
-
-        // Инициализация скрипта Единого Окна Продамус
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('[data-prodamus-pay-btn]').forEach(function(button) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const payUrl = this.getAttribute('data-prodamus-pay-btn');
-                    
-                    if (typeof window.ProdamusCheckout === 'undefined') {
-                        // Фолбэк на случай непредвиденных проблем с сетью
-                        window.location.href = payUrl;
-                        return;
-                    }
-
-                    const checkout = new window.ProdamusCheckout({
-                        url: payUrl
-                    });
-                    
-                    checkout.open();
-                });
-            });
-        });
-    <script>
-        lucide.createIcons();
-
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    el.classList.add("active");
-                }
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
-
-        // Железная инициализация всплывающего окна Продамус
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('[data-prodamus-pay-btn]').forEach(function(button) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const payUrl = this.getAttribute('data-prodamus-pay-btn');
-                    
-                    // Проверяем, загрузился ли оригинальный скрипт Продамуса из <head>
-                    if (typeof window.prodamusCheckoutInit === 'function') {
-                        window.prodamusCheckoutInit({
-                            url: payUrl,
-                            target: '_self' // Указывает скрипту обрабатывать клик в текущем окне через поп-ап
-                        });
-                    } else if (typeof window.ProdamusCheckout !== 'undefined') {
-                        const checkout = new window.ProdamusCheckout({ url: payUrl });
-                        checkout.open();
-                    } else {
-                        // Если скрипт совсем не загрузился (например, локальный запуск), просто перенаправляем
-                        window.location.href = payUrl;
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
