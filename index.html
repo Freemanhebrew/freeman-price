@@ -3,372 +3,1041 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Иврит с Фриман | Эксклюзивное обучение</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>ФРИМАН | Иврит Высокого Уровня</title>
+    <!-- Подключаем стильные шрифты и иконки -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --gold: #D4AF37;
-            --gold-gradient: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --bg-black: #050505;
+            --blue-flag: #0038A8;
+            --blue-neon: #00D2FF;
+            --blue-dark: #0A192F;
+            --white: #FFFFFF;
+            --light-gray: #F4F7FC;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-black);
-            color: #ffffff;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
+        body {
+            font-family: 'Montserrat', 'Rubik', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .gold-text {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+        /* Хедер и Бургер-меню */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 56, 168, 0.05);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Кастомный скроллбар */
-        .reviews-container::-webkit-scrollbar {
-            height: 6px;
-        }
-        .reviews-container::-webkit-scrollbar-track {
-            background: #111;
-        }
-        .reviews-container::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 10px;
-        }
-
-        .premium-card {
-            background: #111;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-
-        .premium-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
-        }
-
-        .btn-luxury {
-            background: var(--gold-gradient);
-            color: #000;
+        .logo {
             font-weight: 800;
-            text-transform: uppercase;
+            font-size: 24px;
+            color: var(--blue-flag);
             letter-spacing: 1px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            text-transform: uppercase;
         }
 
-        .btn-luxury:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        .logo span {
+            color: var(--blue-neon);
         }
 
-        .reveal {
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .burger-bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--blue-flag);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .burger-menu.active .burger-bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--white);
+        }
+        .burger-menu.active .burger-bar:nth-child(2) {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .burger-menu.active .burger-bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--white);
         }
 
-        details summary::-webkit-details-marker { display: none; }
-        details[open] summary i { transform: rotate(180deg); }
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--blue-dark);
+            padding: 100px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            transition: var(--transition);
+            z-index: 1001;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--blue-neon);
+            padding-left: 10px;
+        }
+
+        /* Главный экран */
+        .hero {
+            padding: 140px 25px 80px;
+            background: linear-gradient(135deg, #F9FBFF 0%, #E6EEFF 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--blue-flag);
+            text-shadow: 0 0 20px rgba(0, 86, 168, 0.1);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .hero-avatar-wrapper {
+            position: relative;
+            margin-top: 30px;
+            width: 280px;
+            height: 280px;
+        }
+
+        .hero-avatar-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, var(--blue-flag), var(--blue-neon), var(--blue-flag));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morphing 10s infinite linear;
+            opacity: 0.15;
+        }
+
+        .hero-avatar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: #ddd;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0, 56, 168, 0.15);
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* Общие стили секций */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 15px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--blue-flag);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--blue-flag);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(0, 56, 168, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #002b80;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 56, 168, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue-flag);
+            color: var(--blue-flag);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue-flag);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Блок 1: Уроки Zoom */
+        .zoom-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: 2px solid #E2E8F0;
+            background: var(--white);
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-muted);
+        }
+
+        .tab-btn.active {
+            background: var(--blue-dark);
+            color: var(--white);
+            border-color: var(--blue-dark);
+        }
+
+        .cards-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .cards-grid.active {
+            display: grid;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue-flag);
+            box-shadow: 0 20px 40px rgba(0, 56, 168, 0.08);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 56, 168, 0.1);
+            color: var(--blue-flag);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .card-meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .card-meta i {
+            color: var(--blue-flag);
+            margin-right: 5px;
+        }
+
+        .card-price {
+            margin-top: auto;
+            margin-bottom: 25px;
+        }
+
+        .price-ils {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--blue-flag);
+        }
+
+        .price-usd {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Блок 2: Подкаст */
+        .podcast-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            border-radius: 40px;
+            padding: 60px 30px;
+        }
+
+        .podcast-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media(min-width: 992px) {
+            .podcast-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        .podcast-features {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .podcast-features h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--blue-dark);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .feature-item i {
+            color: var(--blue-flag);
+            font-size: 18px;
+            background: rgba(0, 56, 168, 0.08);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .podcast-offer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .podcast-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,210,255,0.15) 0%, transparent 60%);
+        }
+
+        .podcast-offer h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+
+        .podcast-offer p {
+            color: #94A3B8;
+            margin-bottom: 30px;
+            z-index: 1;
+            max-width: 400px;
+        }
+
+        /* Блок 3: Разговорный клуб */
+        .club-box {
+            background: var(--white);
+            border: 3px dashed var(--blue-flag);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .club-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--blue-flag);
+            color: var(--white);
+            padding: 6px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .club-prices {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .club-price-item {
+            background: var(--light-gray);
+            padding: 20px 30px;
+            border-radius: 16px;
+            min-width: 200px;
+        }
+
+        .club-price-item span {
+            display: block;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .club-price-item strong {
+            font-size: 26px;
+            color: var(--blue-dark);
+            font-weight: 800;
+        }
+
+        /* Блок 4: Об авторе */
+        .author-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        @media(min-width: 768px) {
+            .author-container { grid-template-columns: 1fr 2fr; }
+        }
+
+        .author-photo-wrapper {
+            justify-self: center;
+        }
+
+        .author-photo {
+            width: 240px;
+            height: 240px;
+            border-radius: 24px;
+            background: #ddd;
+            object-fit: cover;
+            border: 6px solid var(--light-gray);
+        }
+
+        .author-text h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--blue-dark);
+        }
+
+        .author-text p {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Отзывы Слайдер */
+        .reviews-slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+        }
+
+        .review-card {
+            min-width: 280px;
+            max-width: 280px;
+            height: 380px;
+            background: var(--white);
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--text-muted);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            overflow: hidden;
+        }
+
+        .review-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .slider-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid #E2E8F0;
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue-flag);
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background: var(--blue-flag);
+            color: var(--white);
+            border-color: var(--blue-flag);
+        }
+
+        /* Разделитель */
+        .divider {
+            height: 1px;
+            background: #E2E8F0;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Футер */
+        footer {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--blue-flag);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--blue-neon);
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #94A3B8;
+        }
+
+        /* Адаптивность для мобильных экранов */
+        @media(max-width: 576px) {
+            .hero h1 { font-size: 32px; }
+            .section-title { font-size: 26px; }
+            .club-prices { gap: 15px; }
+            .club-price-item { min-width: 100%; }
+        }
     </style>
-
-    <script src="https://static.prodamus.ru/checkout/popup.js"></script>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-[100] bg-black/90 backdrop-blur-xl border-b border-white/10 px-6 py-5">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-black tracking-widest gold-text">FREEMAN</a>
-            <div class="hidden md:flex gap-10 items-center text-[11px] uppercase font-bold tracking-[0.2em]">
-                <a href="#about" class="hover:text-amber-400 transition">Обо мне</a>
-                <a href="#prices" class="hover:text-amber-400 transition">Тарифы</a>
-                <a href="#reviews" class="hover:text-amber-400 transition">Отзывы</a>
-                <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="btn-luxury px-6 py-2.5 rounded-sm">Записаться</a>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="logo">FREEMAN<span>.</span></div>
+        <div class="burger-menu" id="burgerMenu">
+            <span class="burger-bar"></span>
+            <span class="burger-bar"></span>
+            <span class="burger-bar"></span>
+        </div>
+        <nav id="navMenu">
+            <a href="#lessons">Zoom-Уроки</a>
+            <a href="#podcast">Подкаст</a>
+            <a href="#club">Разговорный клуб</a>
+            <a href="#about">Об авторе</a>
+        </nav>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Иврит как хирургия.<br>Выходим на уровень <span>Бэт и Гимэль</span></h1>
+            <p>Профессиональный деконструкт языка, логика корней и binyans без зазубривания от полиглота.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#lessons" class="btn btn-primary">Выбрать пакет уроков</a>
+                <a href="#podcast" class="btn btn-outline" style="border-color: var(--blue-dark); color: var(--blue-dark);">Слушать подкаст</a>
             </div>
         </div>
-    </nav>
+        <div class="hero-avatar-wrapper">
+            <div class="hero-avatar-bg"></div>
+            <!-- ТВОЕ ФОТО №1 (Главное): Замени 'avatar.jpg' на ссылку на свое фото -->
+            <img src="https://via.placeholder.com/260x260/0038A8/ffffff?text=Фриман+Главная" alt="Андрей Фриман" class="hero-avatar">
+        </div>
+    </section>
 
-    <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
-        <span class="text-amber-500 uppercase tracking-[0.6em] text-[10px] mb-6 reveal">Иврит премиального уровня</span>
-        <h1 class="text-5xl md:text-[8rem] font-black mb-8 reveal leading-none italic uppercase">Иврит с <br><span class="gold-text">Фриман</span></h1>
-        <p class="max-w-2xl text-zinc-300 font-light text-xl mb-12 reveal italic font-serif">
-            "Вы заговорите не просто правильно, а естественно. <br>Я дам вам ключи от израильского кода."
-        </p>
-        <div class="flex flex-wrap justify-center gap-6 reveal">
-            <a href="#prices" class="btn-luxury px-12 py-5 text-sm">Выбрать формат</a>
-            <div class="flex items-center gap-4">
-                <a href="https://t.me/Freeman_hebrew" target="_blank" class="p-4 border border-white/20 rounded-full hover:bg-white/10 transition">
-                    <i data-lucide="send" class="w-6 h-6"></i>
-                </a>
-                <a href="https://instagram.com/freeman_hebrew" target="_blank" class="p-4 border border-white/20 rounded-full hover:bg-white/10 transition">
-                    <i data-lucide="instagram" class="w-6 h-6"></i>
-                </a>
+    <!-- Блок 1: Zoom Уроки -->
+    <section id="lessons">
+        <h2 class="section-title">Пакеты занятий в Zoom</h2>
+        <p class="section-subtitle">Индивидуальные уроки в интерактивном формате для тех, кому нужен мощный и быстрый прорыв в языковой структуре.</p>
+        
+        <div class="zoom-tabs">
+            <button class="tab-btn active" onclick="switchTab('45min')">Формат 45 минут</button>
+            <button class="tab-btn" onclick="switchTab('60min')">Формат 60 минут</button>
+        </div>
+
+        <!-- Сетка 45 минут -->
+        <div class="cards-grid active" id="tab-45min">
+            <!-- Карта 1 -->
+            <div class="card">
+                <span class="card-badge">Лайт</span>
+                <div class="card-title">ФРИМАН ЛАЙТ</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 45 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 4 занятия в месяц (1 раз в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">800 ₪</div>
+                    <div class="price-usd">~ 270.00 $</div>
+                </div>
+                <a href="https://payform.ru/fqbwDT3/" target="_blank" class="btn btn-primary">Купить пакет</a>
+            </div>
+            <!-- Карта 2 -->
+            <div class="card">
+                <span class="card-badge" style="background: rgba(0,210,255,0.1); color: #00A3C4;">Популярно</span>
+                <div class="card-title">ФРИМАН МЕДИУМ</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 45 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 8 занятий в месяц (2 раза в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">1440 ₪</div>
+                    <div class="price-usd">~ 490.00 $</div>
+                </div>
+                <a href="https://payform.ru/s1bwDZz/" target="_blank" class="btn btn-primary">Купить пакет</a>
+            </div>
+            <!-- Карта 3 -->
+            <div class="card">
+                <span class="card-badge">Максимум</span>
+                <div class="card-title">ФРИМАН МАКС</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 45 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 12 занятий в месяц (3 раза в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">1920 ₪</div>
+                    <div class="price-usd">~ 650.00 $</div>
+                </div>
+                <a href="https://payform.ru/qfbwDYJ/" target="_blank" class="btn btn-primary">Купить пакет</a>
+            </div>
+        </div>
+
+        <!-- Сетка 60 минут -->
+        <div class="cards-grid" id="tab-60min">
+            <!-- Карта 4 -->
+            <div class="card">
+                <span class="card-badge">Старт</span>
+                <div class="card-title">ФРИМАН СТАРТ</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 60 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 4 занятия в месяц (1 раз в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">1000 ₪</div>
+                    <div class="price-usd">~ 340.00 $</div>
+                </div>
+                <a href="https://payform.ru/opbwDXP/" target="_blank" class="btn btn-primary">Купить пакет</a>
+            </div>
+            <!-- Карта 5 -->
+            <div class="card">
+                <span class="card-badge" style="background: rgba(0,210,255,0.1); color: #00A3C4;">Про</span>
+                <div class="card-title">ФРИМАН ПРО</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 60 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 8 занятий в месяц (2 раза в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">1600 ₪</div>
+                    <div class="price-usd">~ 540.00 $</div>
+                </div>
+                <a href="https://payform.ru/mbbwDWx/" target="_blank" class="btn btn-primary">Купить пакет</a>
+            </div>
+            <!-- Карта 6 -->
+            <div class="card">
+                <span class="card-badge">Ультра</span>
+                <div class="card-title">ФРИМАН УЛЬТРА</div>
+                <div class="card-meta">
+                    <div><i class="fa-regular fa-clock"></i> 60 минут / урок</div>
+                    <div><i class="fa-regular fa-calendar"></i> 12 занятий в месяц (3 раза в неделю)</div>
+                </div>
+                <div class="card-price">
+                    <div class="price-ils">2160 ₪</div>
+                    <div class="price-usd">~ 730.00 $</div>
+                </div>
+                <a href="https://payform.ru/iwbwDUK/" target="_blank" class="btn btn-primary">Купить пакет</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-32 bg-zinc-950">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-            <div class="reveal">
-                <h2 class="text-6xl font-black mb-10 italic">Андрей <br><span class="gold-text">Фриман</span></h2>
-                <div class="space-y-8 text-white font-light text-lg leading-relaxed">
-                    <p>Полиглот и ментор. Более 20 лет я живу в языковой среде Израиля и знаю об иврите всё: от библейских корней до дерзкого уличного сленга.</p>
-                    <p class="border-l-4 border-amber-600 pl-8 italic font-serif text-2xl gold-text">
-                        "Я не учу по учебникам. Я создаю ваш личный языковой интеллект."
-                    </p>
-                    <p>Моя специализация — уровни ב-г и выше. Мы будем работать над тем, чтобы ваша речь звучала дорого, точно и уверенно.</p>
+    <div class="divider"></div>
+
+    <!-- Блок 2: Подкаст -->
+    <section id="podcast">
+        <h2 class="section-title">Подкаст «Фриман»</h2>
+        <p class="section-subtitle">Закрытая экосистема для прокачки понимания на слух. Это не просто аудио, это полноценный интерактивный учебный комплекс.</p>
+        
+        <div class="podcast-section">
+            <div class="podcast-container">
+                <div class="podcast-features">
+                    <h3>В каждый выпуск входит пакет:</h3>
+                    <div class="feature-item"><i class="fa-solid fa-volume-high"></i> Аудио самого выпуска</div>
+                    <div class="feature-item"><i class="fa-solid fa-video"></i> Видео с синхронными субтитрами на иврите</div>
+                    <div class="feature-item"><i class="fa-solid fa-book-open"></i> PDF книга (оригинальный текст + адаптивный перевод)</div>
+                    <div class="feature-item"><i class="fa-solid fa-layer-group"></i> Интерактивный воркбук для проработки темы</div>
+                    <div class="feature-item"><i class="fa-solid fa-clone"></i> Модули в Quizlet с правильным аудио-произношением</div>
+                    <div class="feature-item"><i class="fa-solid fa-list-check"></i> Интерактивные опросы и тесты на понимание</div>
+                    <div class="feature-item"><i class="fa-solid fa-comments"></i> Доступ в закрытый VIP чат для общения</div>
                 </div>
-            </div>
-            <div class="relative reveal">
-                <img src="https://i.postimg.cc/2Sz53FDB/IMG-0264-fd9216f6-30cc-419d-9a5e-d7532c32b2a7.png" alt="Андрей Фриман" class="grayscale hover:grayscale-0 transition duration-1000 border border-white/10 shadow-2xl">
-            </div>
-        </div>
-    </section>
-
-    <section id="prices" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-6xl font-black mb-6 uppercase">Тарифные <span class="gold-text italic">Планы</span></h2>
-                <p class="text-zinc-400 tracking-[0.3em] uppercase text-xs">Доступна оплата в любой валюте</p>
-            </div>
-
-            <div class="mb-32 reveal">
-                <h3 class="text-center text-3xl font-black mb-16 gold-text italic uppercase">Формат: 45 минут</h3>
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="premium-card p-12 flex flex-col">
-                        <h4 class="text-2xl font-bold mb-2">ФРИМАН ЛАЙТ</h4>
-                        <p class="text-zinc-500 text-xs uppercase mb-8">4 занятия в месяц</p>
-                        <div class="text-6xl font-black mb-8">800<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
-                            <li>• 1 раз в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/fqbwDT3/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать ЛАЙТ</button>
-                    </div>
-                    <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
-                        <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН МЕДИУМ</h4>
-                        <p class="text-amber-500 text-xs uppercase mb-8 italic">8 занятий в месяц</p>
-                        <div class="text-6xl font-black mb-8">1440<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-white">
-                            <li>• 2 раза в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/s1bwDZz/'}); return false;" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать МЕДИУМ</button>
-                    </div>
-                    <div class="premium-card p-12 flex flex-col">
-                        <h4 class="text-2xl font-bold mb-2">ФРИМАН МАКС</h4>
-                        <p class="text-zinc-500 text-xs uppercase mb-8">12 занятий в месяц</p>
-                        <div class="text-6xl font-black mb-8">1920<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
-                            <li>• 3 раза в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/qfbwDYJ/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать МАКС</button>
+                
+                <div class="podcast-offer">
+                    <h3>Оформить подписку</h3>
+                    <p>Доступны тарифные планы на выбор: 1, 3, 6 или 12 месяцев. Выбирай комфортный период внутри бота.</p>
+                    <div style="display:flex; flex-direction:column; gap:15px; width:100%; max-width:320px;">
+                        <a href="https://t.me/tribute/app?startapp=ep_8xnh8EnM9q0p0IpQuYZxJrVOyH8DdOCanaisXO1z0WaCOspHdE" target="_blank" class="btn btn-primary" style="background:var(--blue-neon); color:var(--blue-dark); box-shadow:0 8px 25px rgba(0,210,255,0.3);">Выбрать тариф в Tribute</a>
+                        <a href="https://t.me/freemanpodcastdemo" target="_blank" class="btn btn-outline" style="color:var(--white); border-color:var(--white);">Перейти в Демо-канал</a>
                     </div>
                 </div>
             </div>
 
-            <div class="reveal">
-                <h3 class="text-center text-3xl font-black mb-16 gold-text italic uppercase">Формат: 60 минут</h3>
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="premium-card p-12 flex flex-col">
-                        <h4 class="text-2xl font-bold mb-2">ФРИМАН СТАРТ</h4>
-                        <p class="text-zinc-500 text-xs uppercase mb-8 italic">4 занятия в месяц</p>
-                        <div class="text-6xl font-black mb-8 italic">1000<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
-                            <li>• 1 раз в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/opbwDXP/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать СТАРТ</button>
+            <!-- Отзывы подкаста -->
+            <div style="margin-top: 50px;">
+                <h3 style="text-align:center; font-size:20px; margin-bottom:20px; color:var(--blue-dark);">Что говорят слушатели подкаста:</h3>
+                <div class="reviews-slider-container">
+                    <div class="reviews-track" id="track-podcast">
+                        <!-- 8 ОТЗЫВОВ ДЛЯ ПОДКАСТА (Вставляй ссылки на скрины вместо картинок-заглушек) -->
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Подкаст+1" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/00D2FF/ffffff?text=Отзыв+Подкаст+2" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Подкаст+3" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/00D2FF/ffffff?text=Отзыв+Подкаст+4" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Подкаст+5" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/00D2FF/ffffff?text=Отзыв+Подкаст+6" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Подкаст+7" alt="Отзыв"></div>
+                        <div class="review-card"><img src="https://via.placeholder.com/280x380/00D2FF/ffffff?text=Отзыв+Подкаст+8" alt="Отзыв"></div>
                     </div>
-                    <div class="premium-card p-12 flex flex-col border-amber-500/40 bg-zinc-900 scale-105">
-                        <h4 class="text-2xl font-bold mb-2 gold-text">ФРИМАН ПРО</h4>
-                        <p class="text-amber-500 text-xs uppercase mb-8 italic">8 занятий в месяц</p>
-                        <div class="text-6xl font-black mb-8 italic">1600<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
-                            <li>• 2 раза в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/mbbwDWx/'}); return false;" class="btn-luxury py-5 text-center text-xs cursor-pointer">Выбрать ПРО</button>
-                    </div>
-                    <div class="premium-card p-12 flex flex-col">
-                        <h4 class="text-2xl font-bold mb-2">ФРИМАН УЛЬТРА</h4>
-                        <p class="text-zinc-500 text-xs uppercase mb-8 italic">12 занятий в месяц</p>
-                        <div class="text-6xl font-black mb-8 italic">2160<span class="text-xl ml-1 italic font-light">₪</span></div>
-                        <ul class="text-sm space-y-4 mb-12 text-zinc-300">
-                            <li>• 3 раза в неделю</li>
-                        </ul>
-                        <button onclick="window.prodamusCheckoutInit({url: 'https://payform.ru/iwbwDUK/'}); return false;" class="mt-auto border border-amber-600 py-4 text-center text-xs font-bold uppercase hover:bg-amber-600 hover:text-black transition cursor-pointer">Выбрать УЛЬТРА</button>
+                    <div class="slider-controls">
+                        <button class="slider-btn" onclick="moveSlider('podcast', 'prev')"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="moveSlider('podcast', 'next')"><i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="reviews" class="py-32 bg-black overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-5xl font-black mb-20 text-center italic uppercase">Ваш новый <span class="gold-text">Уровень</span></h2>
+    <div class="divider"></div>
+
+    <!-- Блок 3: Разговорный клуб -->
+    <section id="club">
+        <h2 class="section-title">Разговорный Клуб</h2>
+        <p class="section-subtitle">Переходим от теории к тотальной практике. Ломаем языковой барьер в мини-группах.</p>
+        
+        <div class="club-box">
+            <div class="club-badge">Скоро запуск</div>
+            <h3 style="font-size:24px; color:var(--blue-dark); margin-bottom:15px;">Интерактивный формат встреч</h3>
+            <p style="color:var(--text-muted); max-width:700px; margin:0 auto; font-weight: 500;">
+                Живой Zoom, группы строго до 8 человек для максимального вовлечения каждого. Разбираем, проговариваем и внедряем в речь самые актуальные темы и лексику из подкастов Фримана.
+            </p>
             
-            <div class="reviews-container flex gap-10 overflow-x-auto pb-16 snap-x">
-                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
-                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"До наших занятий я даже не представлял, что могу настолько быстро и качественно усваивать иврит. Через полгода смотрю видео из университета по высшей математике и всё понимаю! Лучший преподаватель."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">И</div>
-                        <span class="font-bold text-sm tracking-widest uppercase">Илья</span>
-                    </div>
+            <div class="club-prices">
+                <div class="club-price-item">
+                    <span>Разовая сессия (90 минут)</span>
+                    <strong>125 ₪</strong>
                 </div>
-
-                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
-                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"Профессионал своего дела. У меня был экспресс курс, много информации за короткий срок! Благодаря его терпению я намного продвинулась. Очень рекомендую! 😊"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">М</div>
-                        <span class="font-bold text-sm tracking-widest uppercase">Мария</span>
-                    </div>
-                </div>
-
-                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
-                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"Умеет увлекательно донести материал. Занятия построены так, что с первых уроков используешь язык в жизни. Акцент на разговорные навыки — это супер."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">А</div>
-                        <span class="font-bold text-sm tracking-widest uppercase">Алена</span>
-                    </div>
-                </div>
-
-                <div class="min-w-[400px] md:min-w-[600px] p-12 bg-zinc-900/50 border border-white/5 snap-center">
-                    <p class="text-white text-lg leading-relaxed mb-10 italic font-serif">"После ульпанов и частных учителей только с Андреем я почувствовала «легкость бытия в Иврите». Начала читать Тору и свободно говорить за пару месяцев!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center font-black text-black">В</div>
-                        <span class="font-bold text-sm tracking-widest uppercase">Вероника</span>
-                    </div>
+                <div class="club-price-item" style="border: 2px solid var(--blue-neon); background: rgba(0,210,255,0.02);">
+                    <span>Абонемент на месяц (4 сессии)</span>
+                    <strong>400 ₪ <small style="font-size:14px; color:var(--blue-flag);">Выгодно</small></strong>
                 </div>
             </div>
-            <p class="text-center text-zinc-600 text-[10px] uppercase tracking-[0.5em] mt-6">Листайте вправо →</p>
+
+            <a href="https://t.me/Andreas_Free" target="_blank" class="btn btn-primary">Занять место в листе ожидания</a>
         </div>
     </section>
 
-    <section id="faq" class="py-32 px-6 bg-zinc-950">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-20 text-center italic gold-text uppercase">Вопросы</h2>
-            <div class="space-y-6">
-                <details class="group premium-card p-6 cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
-                        В какой валюте возможна оплата?
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
-                    </summary>
-                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
-                        Для вашего удобства я принимаю оплату в любой валюте, через официального telegram чат-бота. Всё что вам нужно сделать, это выбрать нужный вам пакет и перейти по ссылке для оплаты.
-                    </div>
-                </details>
-                <details class="group premium-card p-6 cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
-                        Нужно ли покупать учебники?
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
-                    </summary>
-                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
-                        Нет. Все материалы я предоставляю индивидуально: видео, audio, карточки слов и авторские тексты уже включены в стоимость обучения.
-                    </div>
-                </details>
-                <details class="group premium-card p-6 cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest">
-                        Как проходят уроки?
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i>
-                    </summary>
-                    <div class="mt-6 text-zinc-400 font-light leading-relaxed">
-                        Занятия проводятся в Zoom. Основной упор на практику. Мы разбираем живой язык, сленг, смотрим стендапы и подкасты, чтобы вы привыкали к реальной речи.
-                    </div>
-                </details>
+    <div class="divider"></div>
+
+    <!-- Блок 4: Об авторе -->
+    <section id="about">
+        <h2 class="section-title">Кто такой Фриман?</h2>
+        <p class="section-subtitle">Преподаватель, лингвист-семитолог, ментор.</p>
+        
+        <div class="author-container">
+            <div class="author-photo-wrapper">
+                <!-- ТВОЕ ФОТО №2 (В блоке об авторе): Замени 'author.jpg' на ссылку на свое фото -->
+                <img src="https://via.placeholder.com/240x240/0A192F/ffffff?text=Фриман+Преподаватель" alt="Андрей Фриман" class="author-photo">
+            </div>
+            <div class="author-text">
+                <h3>Я Андрей (Фриман) — 32 года.</h3>
+                <p><strong>Полиглот:</strong> свободно владею ивритом, русским, английским и греческим языками. Моя специализация — это «лингвистическая хирургия» для уровней Бэт, Гимэль и выше. Я не заставляю учить правила, я показываю, как устроен скелет языка изнутри.</p>
+                <p>Создатель масштабной образовательной экосистемы: авторского подкаста «Фриман», Telegram-канала, Zoom-курсов и интерактивных лексических модулей, по которым учатся сотни студентов по всему миру.</p>
             </div>
         </div>
-    </section>
 
-    <section class="py-32 bg-zinc-900 px-6">
-        <div class="max-w-6xl mx-auto border-t border-b border-white/10 py-20 reveal">
-            <h2 class="text-4xl font-black mb-20 text-center gold-text uppercase">Правила Работы</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <div class="text-center">
-                    <i data-lucide="calendar" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
-                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Абонемент</h5>
-                    <p class="text-sm text-zinc-300 font-light">Месячная оплата вперед фиксирует место в графике.</p>
+        <!-- Общие отзывы -->
+        <div>
+            <h3 style="text-align:center; font-size:20px; margin-bottom:20px; color:var(--blue-dark);">Отзывы о моем обучении:</h3>
+            <div class="reviews-slider-container">
+                <div class="reviews-track" id="track-general">
+                    <!-- 8 ОБЩИХ ОТЗЫВОВ О ТЕБЕ (Вставляй ссылки на скрины вместо картинок-заглушек) -->
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0A192F/ffffff?text=Отзыв+Препод+1" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Препод+2" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0A192F/ffffff?text=Отзыв+Препод+3" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Препод+4" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0A192F/ffffff?text=Отзыв+Препод+5" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Препод+6" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0A192F/ffffff?text=Отзыв+Препод+7" alt="Отзыв"></div>
+                    <div class="review-card"><img src="https://via.placeholder.com/280x380/0038A8/ffffff?text=Отзыв+Препод+8" alt="Отзыв"></div>
                 </div>
-                <div class="text-center">
-                    <i data-lucide="refresh-cw" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
-                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Перенос</h5>
-                    <p class="text-sm text-zinc-300 font-light">Возможен при уведомлении за 24 часа. Иначе урок сгорает.</p>
-                </div>
-                <div class="text-center">
-                    <i data-lucide="zap" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
-                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Контакт</h5>
-                    <p class="text-sm text-zinc-300 font-light">Я на связи в Telegram и готов ответить на все ваши вопросы.</p>
-                </div>
-                <div class="text-center">
-                    <i data-lucide="award" class="w-10 h-10 mx-auto mb-6 text-amber-500"></i>
-                    <h5 class="font-bold text-xs uppercase mb-4 tracking-widest text-white italic">Результат</h5>
-                    <p class="text-sm text-zinc-300 font-light">Гарантированный прогресс при выполнении моих рекомендаций.</p>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="moveSlider('general', 'prev')"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="slider-btn" onclick="moveSlider('general', 'next')"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-24 bg-black px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16 text-center md:text-left">
-            <div>
-                <div class="text-3xl font-black gold-text mb-4 italic tracking-widest uppercase">FREEMAN HEBREW</div>
-                <p class="text-zinc-500 text-xs uppercase tracking-[0.4em]">ИВРИТ С ФРИМАН 2026</p>
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-10">
-                <a href="https://t.me/Freeman_hebrew" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
-                    <i data-lucide="send" class="w-5 h-5"></i> Канал
-                </a>
-                <a href="https://instagram.com/freeman_hebrew" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
-                    <i data-lucide="instagram" class="w-5 h-5"></i> Instagram
-                </a>
-                <a href="https://t.me/Andreas_Free" target="_blank" class="hover:text-amber-500 transition flex items-center gap-3 text-xs uppercase font-black">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i> Запись
-                </a>
-            </div>
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://youtube.com/@freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://t.me/Freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
         </div>
-        <div class="text-center mt-24 text-[8px] text-zinc-700 uppercase tracking-[1.5em] font-bold">
-            © 2026 АНДРЕЙ ФРИМАН | ИВРИТ С ФРИМАН
-        </div>
-        <div class="text-center mt-4 text-[10px] text-zinc-500 uppercase tracking-widest">
-            ИП Ларина Екатерина Александровна | ИНН 663904985961 | 
-            <a href="mailto:freemanwork@rambler.ru" class="underline hover:text-amber-500 transition">freemanwork@rambler.ru</a>
-        </div>
-        <div class="text-center mt-4 flex justify-center gap-6">
-            <a href="offer-example.pdf" target="_blank" class="text-[10px] text-zinc-500 uppercase tracking-widest underline hover:text-amber-500 transition">
-                Публичная оферта
-            </a>
-            <a href="Регламент обучения - Иврит с Фриман.pdf" target="_blank" class="text-[10px] text-zinc-500 uppercase tracking-widest underline hover:text-amber-500 transition">
-                Регламент обучения
-            </a>
-        </div>
+        <p>© 2026 Подкаст ФРИМАН | Иврит Высокого Уровня. Все права защищены.</p>
     </footer>
 
+    <!-- Логика переключений и слайдеров -->
     <script>
-        lucide.createIcons();
+        // Бургер меню
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navMenu = document.getElementById('navMenu');
 
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    el.classList.add("active");
-                }
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике по ссылкам
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
             });
+        });
+
+        // Табы для Zoom-уроков
+        function switchTab(format) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.cards-grid').forEach(grid => grid.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById('tab-' + format).classList.add('active');
         }
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
+
+        // Логика слайдеров отзывов
+        const positions = {
+            podcast: 0,
+            general: 0
+        };
+
+        function moveSlider(sliderId, direction) {
+            const track = document.getElementById('track-' + sliderId);
+            const cardWidth = 300; // 280px ширина + 20px отступ
+            const visibleWidth = track.parentElement.offsetWidth;
+            const maxScroll = track.scrollWidth - visibleWidth;
+            
+            if (direction === 'next') {
+                positions[sliderId] -= cardWidth;
+                if (Math.abs(positions[sliderId]) > maxScroll) {
+                    positions[sliderId] = -maxScroll; // Упор в конце
+                }
+            } else {
+                positions[sliderId] += cardWidth;
+                if (positions[sliderId] > 0) {
+                    positions[sliderId] = 0; // Упор в начале
+                }
+            }
+            
+            track.style.transform = `translateX(${positions[sliderId]}px)`;
+        }
+
+        // Добавляем базовый Swipe для мобилок на чистом JS
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleGesture(trackId) {
+            if (touchStartX - touchEndX > 50) {
+                moveSlider(trackId, 'next');
+            }
+            if (touchEndX - touchStartX > 50) {
+                moveSlider(trackId, 'prev');
+            }
+        }
+
+        ['podcast', 'general'].forEach(id => {
+            const track = document.getElementById('track-' + id);
+            track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture(id);
+            });
+        });
     </script>
 </body>
 </html>
