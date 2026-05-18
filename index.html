@@ -391,6 +391,45 @@
                 });
             });
         });
+    <script>
+        lucide.createIcons();
+
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Железная инициализация всплывающего окна Продамус
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-prodamus-pay-btn]').forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const payUrl = this.getAttribute('data-prodamus-pay-btn');
+                    
+                    // Проверяем, загрузился ли оригинальный скрипт Продамуса из <head>
+                    if (typeof window.prodamusCheckoutInit === 'function') {
+                        window.prodamusCheckoutInit({
+                            url: payUrl,
+                            target: '_self' // Указывает скрипту обрабатывать клик в текущем окне через поп-ап
+                        });
+                    } else if (typeof window.ProdamusCheckout !== 'undefined') {
+                        const checkout = new window.ProdamusCheckout({ url: payUrl });
+                        checkout.open();
+                    } else {
+                        // Если скрипт совсем не загрузился (например, локальный запуск), просто перенаправляем
+                        window.location.href = payUrl;
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
