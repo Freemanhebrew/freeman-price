@@ -755,7 +755,7 @@
                 <div class="card-title">ФРИМАН МЕДИУМ</div>
                 <div class="card-meta">
                     <div><i class="fa-regular fa-clock"></i> 45 минут / урок</div>
-                    <div><i class="fa-regular fa-calendar"></i> 8 занятий в месяц (2 раза в неделю)</div>
+                    <div><i class="fa-regular fa-calendar"></i> 8 занятия в месяц (2 раза в неделю)</div>
                 </div>
                 <div class="card-price">
                     <div class="price-ils">1440 ₪</div>
@@ -797,7 +797,7 @@
                 <div class="card-title">ФРИМАН ПРО</div>
                 <div class="card-meta">
                     <div><i class="fa-regular fa-clock"></i> 60 минут / урок</div>
-                    <div><i class="fa-regular fa-calendar"></i> 8 занятий в месяц (2 раза в неделю)</div>
+                    <div><i class="fa-regular fa-calendar"></i> 8 занятия в месяц (2 раза в неделю)</div>
                 </div>
                 <div class="card-price">
                     <div class="price-ils">1600 ₪</div>
@@ -843,25 +843,20 @@
                 <div class="podcast-offer">
                     <h3>Оформить подписку</h3>
                     <p>Доступны тарифные планы на выбор: 1, 3, 6 или 12 месяцев. Выбирай комфортный период внутри бота.</p>
+                    
                     <div style="display:flex; flex-direction:column; gap:15px; width:100%; max-width:320px;">
-    <a href="https://telegram.me/tribute/app?startapp=ep_8xnh8EnM9q0p0IpQuYZxJrVOyH8DdOCanaisXO1z0WaCOspHdE" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       onclick="event.stopPropagation();"
-       class="btn btn-primary" 
-       style="background:var(--blue-neon); color:var(--blue-dark); box-shadow:0 8px 25px rgba(0,210,255,0.3);">
-       Выбрать тариф в Tribute
-    </a>
-    
-    <a href="https://telegram.me/freemanpodcastdemo" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       onclick="event.stopPropagation();"
-       class="btn btn-outline" 
-       style="color:var(--white); border-color:var(--white);">
-       Перейти в Демо-канал
-    </a>
-</div>
+                        <div onclick="window.open('https://telegram.me/tribute/app?startapp=ep_8xnh8EnM9q0p0IpQuYZxJrVOyH8DdOCanaisXO1z0WaCOspHdE', '_blank', 'noopener,noreferrer');"
+                             class="btn btn-primary" 
+                             style="background:var(--blue-neon); color:var(--blue-dark); box-shadow:0 8px 25px rgba(0,210,255,0.3); cursor:pointer;">
+                           Выбрать тариф в Tribute
+                        </div>
+                        
+                        <div onclick="window.open('https://telegram.me/freemanpodcastdemo', '_blank', 'noopener,noreferrer');"
+                             class="btn btn-outline" 
+                             style="color:var(--white); border-color:var(--white); cursor:pointer;">
+                           Перейти в Демо-канал
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -911,7 +906,10 @@
                 </div>
             </div>
 
-            <a href="https://t.me/Andreas_Free" target="_blank" class="btn btn-primary">Занять место в листе ожидания</a>
+            <div onclick="window.open('https://telegram.me/Andreas_Free', '_blank', 'noopener,noreferrer');" 
+                 class="btn btn-primary" style="cursor:pointer;">
+                 Занять место в листе ожидания
+            </div>
         </div>
     </section>
 
@@ -937,7 +935,7 @@
             <div class="reviews-slider-container">
                 <div class="reviews-track" id="track-general">
                     <div class="review-card"><img src="otziv-g1.jpg" alt="Отзыв препод 1"></div>
-                    <div class="review-card"><img src="otziv-g2.jpg" alt="Отзыв препод 2"></div>
+                    <div class="review-card"><img src="otziv-g6.jpg" alt="Отзыв препод 2"></div>
                     <div class="review-card"><img src="otziv-g3.jpg" alt="Отзыв препод 3"></div>
                     <div class="review-card"><img src="otziv-g4.jpg" alt="Отзыв препод 4"></div>
                     <div class="review-card"><img src="otziv-g5.jpg" alt="Отзыв препод 5"></div>
@@ -1030,11 +1028,13 @@
 
         ['podcast', 'general'].forEach(id => {
             const track = document.getElementById('track-' + id);
-            track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-            track.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleGesture(id);
-            });
+            if(track) {
+                track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+                track.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleGesture(id);
+                });
+            }
         });
     </script>
 </body>
