@@ -102,63 +102,112 @@
         }
         nav a:hover { color: var(--blue-neon); padding-left: 10px; }
 
-        /* Герой */
+        /* Обновленный Герой-Баннер */
         .hero {
-            padding: 160px 25px 100px;
-            background: linear-gradient(135deg, #F9FBFF 0%, #E6EEFF 100%);
-            display: flex; flex-direction: column;
-            align-items: center; text-align: center;
-            position: relative; overflow: hidden;
+            min-height: 100vh;
+            padding: 140px 25px 80px;
+            background: #4A0E17 url('hero-bg.png') no-repeat left center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Сдвигает контент вправо, освобождая место для фото */
+            position: relative;
         }
-        .hero-content { max-width: 850px; z-index: 2; }
+
+        /* Затемнение для читаемости текста на стыке с фото */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(74,14,23,0) 30%, rgba(74,14,23,0.85) 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            text-align: left; /* Выравнивание текста по левому краю внутри правого блока */
+            margin-right: 5%;
+        }
+
         .hero-label {
-            display: inline-block; background: rgba(0,56,168,0.1);
-            color: var(--blue-flag); padding: 8px 20px;
-            border-radius: 50px; font-weight: 700; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: #00D2FF; /* Неоновый голубой для контраста */
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
         }
+
         .hero h1 {
-            font-family: 'Heebo', sans-serif; font-size: 58px;
-            font-weight: 900; color: var(--blue-dark);
-            line-height: 1.1; margin-bottom: 25px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 25px;
         }
+
         .hero h1 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #00D2FF;
+            -webkit-text-fill-color: initial; /* Сбрасываем старый градиент */
+            background: none;
         }
+
         .hero-subtitle {
-            font-size: 20px; color: var(--text-muted);
-            margin-bottom: 45px; font-weight: 500;
-            max-width: 700px; margin-left: auto; margin-right: auto;
-        }
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-
-        .hero-avatar-wrapper {
-            position: relative; margin-top: 50px;
-            width: 320px; height: 320px; z-index: 2;
-        }
-        .hero-avatar-bg {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: conic-gradient(from 0deg, var(--blue-flag), var(--blue-neon), var(--blue-flag));
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morphing 12s infinite linear;
-            opacity: 0.15;
-        }
-        .hero-avatar {
-            position: absolute; top: 10px; left: 10px;
-            width: 300px; height: 300px;
-            border-radius: 50%; object-fit: cover;
-            border: 5px solid var(--white);
-            box-shadow: 0 20px 40px rgba(0,56,168,0.2);
-            background-color: #e9ecef;
+            font-size: 22px;
+            color: #E2E8F0;
+            margin-bottom: 45px;
+            font-weight: 400;
+            line-height: 1.4;
         }
 
-        @keyframes morphing {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        /* Кнопки на темном фоне */
+        .hero .btn-outline {
+            border-color: var(--white);
+            color: var(--white);
+        }
+        .hero .btn-outline:hover {
+            background: var(--white);
+            color: #4A0E17;
+        }
+
+        /* Адаптивность под мобилки */
+        @media(max-width: 992px) {
+            .hero {
+                justify-content: center;
+                background-position: calc(25% - 20px) center; /* Смещаем лицо, чтобы не резалось */
+                text-align: center;
+            }
+            .hero::before {
+                background: rgba(74, 14, 23, 0.8); /* Плотный слой на мобилках */
+            }
+            .hero-content {
+                margin-right: 0;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
         }
 
         .section-title {
@@ -319,7 +368,6 @@
         .social-icon:hover { background: var(--blue-flag); transform: translateY(-5px); box-shadow: 0 0 20px var(--blue-neon); }
 
         @media(max-width: 768px) {
-            .hero h1 { font-size: 38px; }
             .section-title { font-size: 32px; }
             .podcast-container { flex-direction: column; }
             .zoom-tabs { flex-direction: column; align-items: center; }
@@ -348,16 +396,12 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-label">Твой последний учитель иврита</div>
-            <h1>Иврит, который ты <span>искал 10 лет</span></h1>
-            <p class="hero-subtitle">Без зубрежки, без скучных учебников. Просто выбери удобный формат — и ты заговоришь.</p>
+            <h1>Привет! Я Андрей. <br><span>Препод, которого ты искал 10 лет.</span></h1>
+            <p class="hero-subtitle">Со мной ты заговоришь на иврите через этимологию и смыслы.</p>
             <div class="hero-buttons">
-                <a href="#course" class="btn btn-primary"><i class="fa-regular fa-calendar-check"></i> Выбрать формат</a>
+                <a href="#course" class="btn btn-neon"><i class="fa-regular fa-calendar-check"></i> Выбрать формат</a>
                 <a href="#podcast" class="btn btn-outline"><i class="fa-solid fa-headphones"></i> Попробовать подкаст</a>
             </div>
-        </div>
-        <div class="hero-avatar-wrapper">
-            <div class="hero-avatar-bg"></div>
-            <img src="1.png" alt="Андрей Фриман" class="hero-avatar">
         </div>
     </section>
 
@@ -413,7 +457,7 @@
                 <div class="card-title">ФРИМАН МЕДИУМ</div>
                 <div class="card-meta">
                     <div><i class="fa-regular fa-clock"></i> 45 минут / урок</div>
-                    <div><i class="fa-regular fa-calendar"></i> 8 занятий в месяц (2 раза в неделю)</div>
+                    <div><i class="fa-regular fa-calendar"></i> 8 занятия в месяц (2 раза в неделю)</div>
                 </div>
                 <div class="card-price">
                     <span class="price-ils">1440 ₪</span>
@@ -479,7 +523,6 @@
         </div>
     </section>
 
-    <!-- Подкаст -->
     <section id="podcast" class="podcast-section">
         <div class="section-title">Подкаст «Фриман»</div>
         <div class="section-subtitle">Твой ежедневный тренажер для ушей. Включай и впитывай иврит через истории и мемы.</div>
@@ -507,7 +550,6 @@
         </div>
     </section>
 
-    <!-- Отзывы о подкасте (8 штук) -->
     <section class="reviews-section" id="reviews-podcast">
         <div class="section-title">Что говорят слушатели подкаста</div>
         <div class="section-subtitle">Реальные отзывы тех, кто уже кайфует от иврита.</div>
@@ -529,7 +571,6 @@
         </div>
     </section>
 
-    <!-- Разговорный клуб -->
     <section id="club" class="podcast-section" style="background: var(--light-gray);">
         <div class="section-title">Разговорный Клуб</div>
         <div class="section-subtitle">Переходим от теории к тотальной практике. Ломаем языковой барьер в мини-группах до 8 человек.</div>
@@ -555,7 +596,6 @@
         </div>
     </section>
 
-    <!-- Отзывы об обучении (8 штук) -->
     <section class="reviews-section" id="reviews-general">
         <div class="section-title">Отзывы о моем обучении</div>
         <div class="section-subtitle">Истории учеников, которые уже заговорили на иврите.</div>
@@ -577,134 +617,5 @@
         </div>
     </section>
 
-    <!-- Об авторе -->
-    <section class="author-section" id="author">
-        <div class="author-container">
-            <div class="author-photo-wrapper">
-                <img src="2.png" alt="Андрей Фриман" class="author-photo">
-                <div class="author-meme-badge">🤙 Живой</div>
-            </div>
-            <div class="author-name">Андрей Фриман</div>
-            <div class="author-desc">
-                Полиглот, лингвист-семитолог. Создатель авторского подкаста и экосистемы для изучения иврита. Моя миссия — подарить тебе язык, на котором ты будешь жить, а не просто учить.
-            </div>
-            <div class="author-stats">
-                <div class="stat-item"><span class="stat-number">5+</span><span class="stat-label">Лет в иврите</span></div>
-                <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Учеников</span></div>
-                <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">Свободных языка</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-section" id="faq">
-        <div class="section-title">Часто задаваемые вопросы</div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">А если я пропущу урок? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>Мы перенесем его на удобное время. Главное — предупредить за 24 часа.</p></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">Можно ли оплатить иностранной картой? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>Да, оплата принимается из любой точки мира. Просто нажми кнопку оплаты под нужным тарифом.</p></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">Я новичок, мне подойдет? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>Конечно! Программа адаптируется под любой уровень. Напиши мне в Telegram, и мы обсудим твой старт.</p></div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://youtube.com/@freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://t.me/Freeman_hebrew" target="_blank" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
-        </div>
-        <p>© 2026 Подкаст ФРИМАН | Иврит Высокого Уровня. Все права защищены.</p>
-    </footer>
-
-    <script>
-        // Бургер-меню
-        const burgerMenu = document.getElementById('burgerMenu');
-        const navMenu = document.getElementById('navMenu');
-        burgerMenu.addEventListener('click', () => {
-            burgerMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                burgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Табы тарифов
-        function switchTab(format) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.cards-grid').forEach(grid => grid.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            document.getElementById('tab-' + format).classList.add('active');
-        }
-
-        // Слайдеры (теперь для двух треков)
-        const positions = { podcast: 0, general: 0 };
-        function moveSlider(sliderId, direction) {
-            const track = document.getElementById('track-' + sliderId);
-            const cardWidth = 320;
-            const visibleWidth = track.parentElement.offsetWidth;
-            const maxScroll = track.scrollWidth - visibleWidth;
-            if (direction === 'next') {
-                positions[sliderId] -= cardWidth;
-                if (Math.abs(positions[sliderId]) > maxScroll) positions[sliderId] = -maxScroll;
-            } else {
-                positions[sliderId] += cardWidth;
-                if (positions[sliderId] > 0) positions[sliderId] = 0;
-            }
-            track.style.transform = `translateX(${positions[sliderId]}px)`;
-        }
-
-        // Поддержка свайпов
-        let touchStartX = 0, touchEndX = 0;
-        function handleGesture(trackId) {
-            if (touchStartX - touchEndX > 50) moveSlider(trackId, 'next');
-            if (touchEndX - touchStartX > 50) moveSlider(trackId, 'prev');
-        }
-        ['podcast', 'general'].forEach(id => {
-            const track = document.getElementById('track-' + id);
-            if(track) {
-                track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-                track.addEventListener('touchend', e => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleGesture(id);
-                });
-            }
-        });
-
-        // FAQ
-        function toggleFAQ(questionElement) {
-            const answer = questionElement.nextElementSibling;
-            const icon = questionElement.querySelector('i');
-            if (answer.classList.contains('active')) {
-                answer.classList.remove('active');
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
-                document.querySelectorAll('.faq-question i').forEach(i => i.style.transform = 'rotate(0deg)');
-                answer.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        function forceTelegramRedirect(url) {
-            const tempLink = document.createElement('a');
-            tempLink.href = url;
-            tempLink.target = '_blank';
-            tempLink.rel = 'noopener noreferrer';
-            tempLink.style.display = 'none';
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
-        }
-    </script>
 </body>
 </html>
